@@ -4,14 +4,36 @@ import 'package:flutter/material.dart';
 
 class MyGame extends FlameGame {
   late final SpriteComponent orangeBlock;
+  Vector2 screenSize = new Vector2(0, 0);
+
+  @override
+  void handleResize(Vector2 size) {
+    // TODO: implement handleResize
+    screenSize = size;
+    super.handleResize(size);
+  }
 
   @override
   void render(Canvas canvas) {
     Color color = Color(0XFFFF0000);
-    Paint enemyColor = Paint()..color = color;
-    canvas.drawRect(Rect.fromLTWH(200, 400, 50, 50), enemyColor);
-    canvas.drawRect(
-        Rect.fromLTWH(201, 401, 48, 48), Paint()..color = Colors.black);
+    Paint redColor = Paint()..color = color;
+
+    canvas.drawLine(Offset(0, 0), Offset(screenSize.x, 0), redColor);
+    canvas.drawLine(
+        Offset(screenSize.x, 0), Offset(screenSize.x, screenSize.y), redColor);
+    canvas.drawLine(
+        Offset(screenSize.x, screenSize.y), Offset(0, screenSize.y), redColor);
+    canvas.drawLine(Offset(0, screenSize.y), Offset(0, 0), redColor);
+    FpsComponent fpsCounter = new FpsComponent();
+
+    TextPaint textPaint = TextPaint(
+      style: TextStyle(
+        fontSize: 20.0,
+        fontFamily: 'Awesome Font',
+      ),
+    );
+    textPaint.render(canvas, 'fps: ' + fpsCounter.fps.toString(),
+        Vector2(screenSize.x - 100, 20));
     super.render(canvas);
   }
 

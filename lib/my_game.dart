@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'net_platform.dart';
 
 class MyGame extends FlameGame {
   late final SpriteComponent orangeBlock;
@@ -57,5 +58,8 @@ class MyGame extends FlameGame {
       Rect.fromLTWH(10, 10, 100, 50),
     );
     add(emptySquare);
+
+    final platform = new NetPlatform();
+    add(platform);
   }
 }

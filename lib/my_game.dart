@@ -25,6 +25,7 @@ class MyGame extends FlameGame {
     canvas.drawLine(
         Offset(screenSize.x, screenSize.y), Offset(0, screenSize.y), redColor);
     canvas.drawLine(Offset(0, screenSize.y), Offset(0, 0), redColor);
+
     FpsComponent fpsCounter = new FpsComponent();
 
     TextPaint textPaint = TextPaint(
@@ -33,8 +34,8 @@ class MyGame extends FlameGame {
         fontFamily: 'Awesome Font',
       ),
     );
-    textPaint.render(canvas, 'fps: ' + fpsCounter.fps.toString(),
-        Vector2(screenSize.x - 100, 20));
+    // textPaint.render(canvas, 'fps: ' + fpsCounter.fps.toString(),
+    //   Vector2(screenSize.x - 100, 20));
     super.render(canvas);
   }
 
@@ -47,17 +48,7 @@ class MyGame extends FlameGame {
     // screen coordinates
     orangeBlock.position = Vector2(100.0, 200.0);
     orangeBlock.angle = 0;
-    add(orangeBlock); // Adds the component
-
-    final square = RectangleComponent.square(
-      position: Vector2.all(100),
-      size: 200,
-      paint: Paint()..color = Colors.yellow,
-    );
-    final emptySquare = RectangleComponent.fromRect(
-      Rect.fromLTWH(10, 10, 100, 50),
-    );
-    add(emptySquare);
+    // add(orangeBlock); // Adds the component
 
     final platform = new NetPlatform();
     add(platform);

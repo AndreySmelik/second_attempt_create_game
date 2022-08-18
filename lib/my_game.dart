@@ -1,9 +1,10 @@
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'net_platform.dart';
 
-class MyGame extends FlameGame {
+class MyGame extends FlameGame with HasTappables {
   late final SpriteComponent orangeBlock;
   Vector2 screenSize = new Vector2(0, 0);
 
@@ -12,6 +13,22 @@ class MyGame extends FlameGame {
     // TODO: implement handleResize
     screenSize = size;
     super.handleResize(size);
+  }
+
+  @override
+  void onTapDown(int pointerId, TapDownInfo info) {
+    // TODO: implement onTapDown
+    int a = 0;
+    Color color = Color(0XFFFF0000);
+    Paint redColor = Paint()..color = color;
+    print(info.eventPosition.global.x.toString());
+    RectangleComponent rect = RectangleComponent.square(
+      position: info.eventPosition.global,
+      size: 20,
+      paint: redColor,
+    );
+    add(rect);
+    super.onTapDown(pointerId, info);
   }
 
   @override

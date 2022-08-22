@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
@@ -60,19 +61,21 @@ class MyGame extends FlameGame with HasTappables, HasDraggableComponents {
 
   @override
   Future<void> onLoad() async {
-    final sprite = await Sprite.load('orange_block.png');
-    final size = Vector2.all(50.0);
-    final orangeBlock = SpriteComponent(size: size, sprite: sprite);
+    final sprite = await Sprite.load('gusling.png');
+    // final size = Vector2.all(50.0);
+    // final orangeBlock = SpriteComponent(size: size, sprite: sprite);
 
     // screen coordinates
-    orangeBlock.position = Vector2(100.0, 200.0);
-    orangeBlock.angle = 0;
+    // orangeBlock.position = Vector2(100.0, 200.0);
+    //  orangeBlock.angle = 0;
     // add(orangeBlock); // Adds the component
 
     final platform = new NetPlatform();
     add(platform);
     final MyDraggableComponent dragCube =
-        MyDraggableComponent(size: Vector2(30, 30));
+        MyDraggableComponent(size: Vector2(160, 160), sprite: sprite)
+          ..add(MoveByEffect(Vector2(0, 100), EffectController(duration: 1)));
+    dragCube.position = Vector2(100.0, 200.0);
     add(dragCube);
   }
 }

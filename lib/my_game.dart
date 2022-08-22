@@ -1,10 +1,12 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:second_attempt_create_game/my_draggable_component.dart';
 import 'net_platform.dart';
 
-class MyGame extends FlameGame with HasTappables {
+class MyGame extends FlameGame with HasTappables, HasDraggableComponents {
   late final SpriteComponent orangeBlock;
   Vector2 screenSize = new Vector2(0, 0);
 
@@ -27,7 +29,7 @@ class MyGame extends FlameGame with HasTappables {
       size: 20,
       paint: redColor,
     );
-    add(rect);
+    // add(rect);
     super.onTapDown(pointerId, info);
   }
 
@@ -69,5 +71,8 @@ class MyGame extends FlameGame with HasTappables {
 
     final platform = new NetPlatform();
     add(platform);
+    final MyDraggableComponent dragCube =
+        MyDraggableComponent(size: Vector2(30, 30));
+    add(dragCube);
   }
 }

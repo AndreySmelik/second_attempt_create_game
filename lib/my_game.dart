@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:second_attempt_create_game/my_draggable_component.dart';
 import 'net_platform.dart';
 
-class MyGame extends FlameGame with HasTappables, HasDraggableComponents {
+class MyGame extends FlameGame
+    with HasDraggableComponents, HasTappableComponents {
   late final SpriteComponent orangeBlock;
   Vector2 screenSize = new Vector2(0, 0);
 
@@ -18,7 +19,7 @@ class MyGame extends FlameGame with HasTappables, HasDraggableComponents {
     super.handleResize(size);
   }
 
-  @override
+  /* @override
   void onTapDown(int pointerId, TapDownInfo info) {
     // TODO: implement onTapDown
     int a = 0;
@@ -32,7 +33,7 @@ class MyGame extends FlameGame with HasTappables, HasDraggableComponents {
     );
     // add(rect);
     super.onTapDown(pointerId, info);
-  }
+  }*/
 
   @override
   void render(Canvas canvas) {
